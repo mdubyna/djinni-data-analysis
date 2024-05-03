@@ -2,7 +2,10 @@ import asyncio
 
 from scraping.parse import parse_djinni
 from tecnologies.filtering import get_filtered_data
-from analysis.djinni_analysis import get_most_common_technologies, get_correlation_matrix
+from analysis.djinni_analysis import (
+    get_most_common_technologies,
+    get_correlation_matrix
+)
 
 
 async def main(path_to_raw_csv: str, path_to_filtered_csv: str) -> None:

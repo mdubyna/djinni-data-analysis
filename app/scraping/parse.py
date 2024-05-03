@@ -30,12 +30,18 @@ logging.basicConfig(
 
 
 async def parse_single_vacancy(vacancy_soup: Tag) -> Vacancy:
-    name = vacancy_soup.select_one("header > div.job-list-item__title"
-                                   "> div > a.job-list-item__link").text.strip()
-    description = vacancy_soup.select_one(".job-list-item__description > span")["data-original-text"]
+    name = vacancy_soup.select_one(
+        "header > div.job-list-item__title"
+        "> div > a.job-list-item__link"
+    ).text.strip()
+    description = vacancy_soup.select_one(
+        ".job-list-item__description > span"
+    )["data-original-text"]
     job_info = [
         info.text
-        for info in vacancy_soup.select("header > div.job-list-item__job-info > span")
+        for info in vacancy_soup.select(
+            "header > div.job-list-item__job-info > span"
+        )
         if "experience" in info.text
     ]
     if "No experience" in job_info[0]:

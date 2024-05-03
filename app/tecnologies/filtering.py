@@ -59,16 +59,24 @@ def filter_description(df: pd.DataFrame) -> pd.DataFrame:
                 words_to_filtering += f" {word} "
 
         words = word_tokenize(words_to_filtering)
-        df.loc[index, "description"] = " ".join(set([w for w in words if w.lower() not in STOP_WORDS_EXTENDED]))
+        df.loc[index, "description"] = " ".join(
+            set([w for w in words if w.lower() not in STOP_WORDS_EXTENDED])
+        )
 
     return df
 
 
-def get_filtered_data(path_to_unfiltered_data: str, path_to_filtered_data) -> None:
+def get_filtered_data(
+        path_to_unfiltered_data: str,
+        path_to_filtered_data: str
+) -> None:
     data = read_data(path_to_unfiltered_data)
     data = filter_description(data)
     data.to_csv(path_to_filtered_data)
 
 
 if __name__ == "__main__":
-    get_filtered_data("../vacancies.csv", "../filtered_vacancies.csv")
+    get_filtered_data(
+        "../vacancies.csv",
+        "../filtered_vacancies.csv"
+    )
